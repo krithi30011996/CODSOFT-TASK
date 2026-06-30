@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+
+@import "tailwindcss";
+
+*{
+    font-family: Outfit;
+}
+
+@layer base{
+    html{
+        scroll-behavior: smooth;
+    }
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+/* Main container text layout */
+.rich-text {
+    font-size: 15px !important;
+    color: #7A7B7D !important;
+    line-height: 1.8 !important;
+}
+
+/* Force headings to be bold, black, and have proper margins */
+.rich-text strong, 
+.rich-text b,
+.rich-text h3,
+.rich-text h4 {
+    font-size: 22px !important;      /* Match main header look */
+    font-weight: 700 !important;     /* Explicit bold */
+    color: #252525 !important;       /* Deep black color */
+    display: block !important;       /* Snap to its own line */
+    margin-top: 28px !important;     /* Space above section */
+    margin-bottom: 16px !important;  /* Space below section */
+}
+
+/* Format the numbered lists (if using <ol> and <li>) */
+.rich-text ol {
+    list-style-type: decimal !important;
+    padding-left: 24px !important;   /* Creates the clean indent you see in the image */
+    margin-bottom: 20px !important;
+}
+
+.rich-text li {
+    margin-bottom: 12px !important; /* Spaces out each numbered item */
+    color: #7A7B7D !important;
+}
+
+/* Format the numbered list items if they are just written as standard paragraphs (<p>) */
+.rich-text p {
+    margin-bottom: 12px !important; /* Even spacing for text blocks */
+}
