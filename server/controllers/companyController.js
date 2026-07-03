@@ -41,13 +41,14 @@ export const registerCompany = async(req, res) =>{
         })
 
     
-    console.log("registerCompany hit");
-    console.log(req.body);
-    console.log(req.file);
+   
 
     }
     catch(err){
         res.json({success:false, message:err.message});
+         console.log("registerCompany hit");
+    console.log(req.body);
+    console.log(req.file);
 
     }
 
