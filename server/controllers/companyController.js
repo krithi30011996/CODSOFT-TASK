@@ -40,6 +40,11 @@ export const registerCompany = async(req, res) =>{
             token: generateToken(company._id)
         })
 
+    
+    console.log("registerCompany hit");
+    console.log(req.body);
+    console.log(req.file);
+
     }
     catch(err){
         res.json({success:false, message:err.message});
