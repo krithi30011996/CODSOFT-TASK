@@ -26,7 +26,7 @@ app.get("/debug-sentry", function mainHandler(req, res) {
 });
 
 app.post('/webhooks', clerkWebhooks);
-app.post('/api/company', companyRoutes);
+app.post('/api/company/register', companyRoutes);
 
 const PORT = process.env.PORT || 5000;
 Sentry.setupExpressErrorHandler(app);
