@@ -10,3 +10,7 @@ cloudinary.config({
 cloudinary.api.ping()
     .then(result => console.log('SUCCESS:', result))
     .catch(err => console.log('FAILURE:', err.message, err.http_code));
+
+cloudinary.uploader.upload('./accenture_logo.png')
+    .then(result => console.log('UPLOAD SUCCESS:', result.secure_url))
+    .catch(err => console.log('UPLOAD FAILURE:', err.message, err.http_code));
