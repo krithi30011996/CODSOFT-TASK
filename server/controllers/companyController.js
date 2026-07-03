@@ -46,20 +46,43 @@ export const registerCompany = async(req, res) =>{
     }
     catch(err){
         res.json({success:false, message:err.message});
-        console.log(err);
+
 
     }
 
 
 }
 
-//new register
-
 
 
 
 // company login
 export const loginCompany = async(req, res) =>{
+    const {email, password} = req.body;
+    try{
+        const company = await Company.findOne({email});
+
+        if(bcrypt.compare(password, company.password)){
+            res.json({
+                success: true,
+                company:{
+                     _id: company._id,
+                name: company.name,
+                email: company.email,
+                image: company.image
+
+                },
+                token: generateToken(company._id)
+            })
+        }
+        else{
+            res.json({success:false, message:"Invalid email or password"})
+        }
+    }
+    catch(error){
+        res.json({success:false, message: error.message});
+
+    }
 
 }
 
