@@ -8,16 +8,16 @@ import {requireAuth} from '@clerk/express'
 const router = express.Router()
 
 //get user dataa
-router.get('/user', getUserData)
+router.get('/user', requireAuth(), getUserData)
 
 //apply for a job
-router.post('/apply', applyForJob)
+router.post('/apply', requireAuth(), applyForJob)
 
 //get applied jobs data
-router.get('/applications', getUserJobApplications)
+router.get('/applications', requireAuth(), getUserJobApplications)
 
 //update user profile-resume
-router.post('/update-resume', upload.single('resume'), updateUserResume)
+router.post('/update-resume', requireAuth(), upload.single('resume'), updateUserResume)
 
 
 export default router;
