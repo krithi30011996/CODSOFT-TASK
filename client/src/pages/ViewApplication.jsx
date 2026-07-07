@@ -8,7 +8,7 @@ import Loading from '../components/Loading'
 const ViewApplication = () => {
   
   const {backendUrl, companyToken} = useContext(AppContext)
-  const [applicants, setApplicants] = useState(false)
+  const [applicants, setApplicants] = useState([])
 
   //function to fetch company job applications data
   const fetchCompanyJobApplications = async() =>{
@@ -38,6 +38,8 @@ const ViewApplication = () => {
 
   },[companyToken])
 
+  console.log(applicants);
+
 
 
 
@@ -57,6 +59,7 @@ const ViewApplication = () => {
           </thead>
           <tbody>
             {applicants.filter(items => items.jobId && items.userId).map((applicant,index)=>(
+            
               <tr key={index} className='tetx-gray-700'>
                  <td className='py-2 px-4 border-b text-center'>{index+1}</td>
                  <td className='py-2 px-4 border-b text-center flex'>
@@ -84,7 +87,7 @@ const ViewApplication = () => {
                  </div>
                  </td>
               </tr>
-            ))}
+             ))} 
           </tbody>
         </table>
       </div>
