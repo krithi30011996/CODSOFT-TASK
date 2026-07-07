@@ -17,6 +17,7 @@ const ApplyJob = () => {
   const {getToken} = useAuth()
   const navigate = useNavigate()
   const [JobData, setJobData] = useState(null)
+  const [isAlreadyApplied, setIsAlreadyApplied] = useState(false)
   
   // Destructured fetchUserData from AppContext here
   const { jobs, backendUrl, userData, userApplications, fetchUserData, fetchUserApplications } = useContext(AppContext)
@@ -34,6 +35,7 @@ const ApplyJob = () => {
       toast.error(error.message)
     }
   }
+ 
 
   const applyHandler = async() =>{
     try {
@@ -63,10 +65,22 @@ const ApplyJob = () => {
       toast.error(error.message)
     }
   }
+   const checkAlreadyApplied =() =>{
+    const hasApplied = userApplications.some(item => item.jobId._id === JobData._id)
+    setIsAlreadyApplied(hasApplied)
+  }
 
   useEffect(() => {
       fetchJob()
   }, [id])
+
+  useEffect(()=>{
+    if(userApplications.length > 0 && JobData){
+      checkAlreadyApplied()
+
+    }
+
+  },[JobData, userApplications, id])
 
   // Added fresh initialization hook to fetch current user profile info immediately on page load
   useEffect(() => {
@@ -114,7 +128,7 @@ const ApplyJob = () => {
             </div>
             
             <div className='flex flex-col justify-center text-center md:text-end text-sm w-full md:w-auto mx-auto md:mx-0'>
-              <button onClick={applyHandler} className='bg-blue-600 hover:bg-blue-700 transition-colors py-2.5 px-10 text-white rounded-md font-medium w-full md:w-auto'>Apply Now</button>
+              <button onClick={applyHandler} className='bg-blue-600 hover:bg-blue-700 transition-colors py-2.5 px-10 text-white rounded-md font-medium w-full md:w-auto'>{isAlreadyApplied ? 'Already Applied' : 'Apply Now'}</button>
               <p className='mt-2 text-xs text-gray-400'>{moment(JobData.date).fromNow()}</p>
             </div>
           </div>
@@ -123,14 +137,16 @@ const ApplyJob = () => {
             <div className='w-full lg:w-2/3'>
               <h2 className='font-bold text-xl text-gray-800 mb-4'>Job description</h2>
               <div className='rich-text text-gray-600 leading-relaxed ' dangerouslySetInnerHTML={{ __html: JobData.description }}></div>
-              <button onClick={applyHandler} className='bg-blue-600 hover:bg-blue-700 transition-colors py-2.5 px-10 text-white rounded-md font-medium mt-10 w-full sm:w-auto'>Apply Now</button>
+              <button onClick={applyHandler} className='bg-blue-600 hover:bg-blue-700 transition-colors py-2.5 px-10 text-white rounded-md font-medium mt-10 w-full sm:w-auto'>{isAlreadyApplied ? 'Already Applied' : 'Apply Now'}</button>
             </div>
 
             <div className='w-full lg:w-1/3 space-y-5'>
               <h2 className='font-bold text-lg text-gray-800 mb-4'>More jobs from {JobData.companyId.name}</h2>
               <div className="space-y-4">
-                {jobs.filter(job => job._id !== JobData._id && job.companyId._id === JobData.companyId._id)
-                  .slice(0, 4)
+                {jobs.filter(job => job._id !== JobData._id && job.companyId._id === JobData.companyId._id &&
+                  !userApplications.some(app => app.jobId?._id === job._id)
+                )
+                .slice(0, 4)
                   .map((job, index) => <JobCard key={index} job={job} />)}
               </div>
             </div>

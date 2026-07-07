@@ -29,14 +29,14 @@ const App = () => {
          <Route path='/application' element={<Application/>}/>
          <Route path='/dashboard' element={<Dashboard/>}>
 
-         {
-          companyToken ? <>
+         {/* {
+          companyToken ? <> */}
           <Route path='add-job' element={<AddJob/>}/>
            <Route path='manage-jobs' element={<ManageJobs/>}/>
            <Route path='view-application' element={<ViewApplication/>}/>
 
-          </>: null
-         }
+          {/* </>: null
+         } */}
            
 
          
