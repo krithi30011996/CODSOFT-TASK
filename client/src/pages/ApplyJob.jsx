@@ -19,7 +19,7 @@ const ApplyJob = () => {
   const [JobData, setJobData] = useState(null)
   
   // Destructured fetchUserData from AppContext here
-  const { jobs, backendUrl, userData, userApplications, fetchUserData } = useContext(AppContext)
+  const { jobs, backendUrl, userData, userApplications, fetchUserData, fetchUserApplications } = useContext(AppContext)
 
   const fetchJob = async () => {
     try {
@@ -52,6 +52,7 @@ const ApplyJob = () => {
       )
       if(data.success){
         toast.success(data.message)
+        await fetchUserApplications()
       }
       else{
         toast.error(data.message)

@@ -84,7 +84,7 @@ export const getUserJobApplications = async(req, res)=>{
             
         }
 
-        return res.json({success:false, applications})
+        return res.json({success:true, applications})
         
     } catch (error) {
         res.json({success:false, message:error.message})
