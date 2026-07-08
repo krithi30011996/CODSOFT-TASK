@@ -8,6 +8,7 @@ import { AppContext } from '../context/AppContext.jsx'
 import { useAuth, useUser } from '@clerk/react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { useEffect } from 'react'
 
 const Application = () => {
 
@@ -16,7 +17,7 @@ const Application = () => {
       
     const [isEdit, setIsEdit] = useState(true) 
     const [resume, setResume] = useState(null)
-    const {backendUrl, userData, userApplications, fetchUserData} = useContext(AppContext)
+    const {backendUrl, userData, userApplications, fetchUserData, fetchUserApplications} = useContext(AppContext)
 
     const updateResume = async() => {
         if (!resume) {
@@ -46,6 +47,14 @@ const Application = () => {
         }
         setResume(null)
     }
+
+    useEffect(()=>{
+        if(user){
+            fetchUserApplications()
+        }
+
+    },[user])
+
 
     return (
         /* FIX: Enforce a full-screen dynamic vertical flex grid */
