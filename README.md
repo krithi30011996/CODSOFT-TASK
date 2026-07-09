@@ -64,3 +64,39 @@ VITE_BACKEND_URL=http://localhost:5000
 <summary><b>📁 Project structure</b></summary>
 
 <br>
+
+```
+CODSOFT-TASK/
+├── client/    # React + Vite frontend
+└── server/    # Express API + MongoDB
+```
+
+</details>
+
+<details>
+<summary><b>🔌 API routes</b></summary>
+
+<br>
+
+| Base | Key Routes |
+|---|---|
+| `/api/jobs` | `GET /`, `GET /:id` |
+| `/api/users` | `GET /user`, `POST /apply`, `GET /applications`, `POST /update-resume` |
+| `/api/company` | `POST /register`, `POST /login`, `POST /post-job`, `GET /applicants` |
+| `/webhooks` | Clerk webhook (Svix-verified) |
+
+</details>
+
+## 📦 Deployment
+
+Client and server deploy as **separate Vercel projects**, each with their own env vars set in the Vercel dashboard.
+
+## 📄 License
+
+[MIT](LICENSE)
+
+---
+
+<div align="center">
+Made by <a href="https://github.com/krithi30011996">Krithika</a>
+</div>
