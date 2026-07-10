@@ -5,7 +5,7 @@
 A full-stack job board — candidates apply, companies hire.
 Built with **MERN**, **Clerk**, **Cloudinary**, and **Sentry**. Deployed on **Vercel**.
 
-**🔗 https://job-portal-client-git-main-krithi30011996s-projects.vercel.app/**
+**🔗 https://job-portal-client-xi-lime.vercel.app/**
 
 </div>
 
